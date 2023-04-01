@@ -2,7 +2,8 @@
 from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 import torch
 from PIL import Image
-from object_detection import ObjectDetector
+from object_detection.model_hf import ObjectDetector
+import os
 
 model = VisionEncoderDecoderModel.from_pretrained(
     "nlpconnect/vit-gpt2-image-captioning")
@@ -42,11 +43,14 @@ def predict_step(image_paths):
 
 if __name__ == "__main__":
     object_detector = ObjectDetector()
-    object_detector.save_bounding_boxes(
-        '/Users/kaushiktummalapalli/Desktop/Image Processing/Hack-Princeton/vision/captioning/sai.jpeg')
-
-    predict_step(
-        "/Users/kaushiktummalapalli/Desktop/Image Processing/Hack-Princeton/vision/captioning/sai.jpeg")
-    #
+    object_detector.save_bounding_boxes("object_detection/test/p.jpeg")
+    path ="./object_detection/data_results"
+    paths=[]
+    for img in os.listdir(path):
+      print(path+"/"+img)
+      paths.append(path+"/"+img)
+    print(predict_step(paths))
+      
+      #
 
 # print(predict_step(['p.jpeg']))# ['a woman in a hospital bed with a woman in a hospital bed']

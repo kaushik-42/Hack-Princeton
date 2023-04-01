@@ -26,13 +26,13 @@ class ObjectDetector:
             label = result['label']
 
             cropped_img = img[ymin:ymax, xmin:xmax]
-            file_name = label.replace(" ", "_") + "_" + str(i+1) + ".jpg"
-            cv2.imwrite('./data_results/'+file_name, cropped_img)
+            file_name = label.replace(" ", "_") + "_" + str(i+1) + ".jpeg"
+            cv2.imwrite('object_detection/data_results/'+file_name, cropped_img)
 
 
-object_detector = ObjectDetector()
-object_detector.save_bounding_boxes(
-    '/Users/kaushiktummalapalli/Desktop/Image Processing/Hack-Princeton/vision/captioning/sai.jpeg')
+# object_detector = ObjectDetector()
+# object_detector.save_bounding_boxes(
+#     'download.jpeg')
 
 """
 import cv2
